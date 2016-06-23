@@ -1,0 +1,33 @@
+#title{
+	font-size: 40px;
+	font-family: "微软雅黑";
+	color: #8E1D1D;
+	display: inline-block;
+}
+#pdx{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+}
+tr{
+	border:solid #add9c0;
+	 border-width:0px 1px 1px 0px; 
+	 padding:10px 0px;
+
+	}
+th{
+	border:solid #add9c0; 
+	border-width:0px 1px 1px 0px; 
+	padding:10px 0px;
+}
+table{
+	border:solid #add9c0;
+	 border-width:1px 0px 0px 1px;
+	 font-size: 20px;
+	font-family: "微软雅黑";
+	color: #43CFB2;
+	margin:0 auto;
+	}
+body{
+	background-image: url(background.jpg);
+}
