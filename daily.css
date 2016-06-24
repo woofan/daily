@@ -31,3 +31,9 @@ table{
 body{
 	background-image: url(background.jpg);
 }
+.yes{
+	background: green;
+}
+.no{
+	background: red;
+}
