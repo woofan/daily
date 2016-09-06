@@ -1,0 +1,4 @@
+1.url src href 的区别
+url:Uniform Resource Location的缩写，译为“统一资源定位符”。URL是Internet上用来描述信息资源的字符串.
+href:hyperrefresh的缩写，意思是更新，刷新的意思， 这个属性规定被链接文档的位置（URL），用于超链接。
+src：search的简写，意思搜索对象，通过是放在图片或框架的时候用到这个让网页去搜索这个对象（有可以是图片或网页等）并显示出来 属性规定在框架中显示的文档的 URL。
