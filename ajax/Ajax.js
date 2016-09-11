@@ -15,11 +15,14 @@ function getHTTPObject(){
 function getNewContent(){
 	var request = new XMLHttpRequest();
 	if(request){
-		request.open("GET","Ajax.txt",true);
+		request.open("GET","data.html",true);
 		request.onreadystatechange = function(){
 			if(request.readyState == 4){
 				var para = document.createElement("p");
-				var txt = document.createTextNode(request.responseText);
+				var p = request.responseXML.getElementsByTagName("p")[0];//返回XML形式
+				var p_txt = p.childNodes[0].nodeValue;
+				var txt = document.createTextNode(p_txt);
+				///var txt = document.createTextNode(request.responseText);//返回字符串形式
 				para.appendChild(txt);
 				document.getElementById("wf").appendChild(para);
 			}
