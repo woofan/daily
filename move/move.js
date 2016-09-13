@@ -48,7 +48,7 @@ function backMessage(){
 	}
 	if(top == 100){
 		moveMessage();
-		return treu;
+		return true;
 	}
 	elem.style.left = left + "px";
 	elem.style.top = top + "px";
