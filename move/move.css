@@ -1,0 +1,15 @@
+#show{
+	width: 100px;
+	height: 100px;
+	position: relative;
+	overflow: hidden;
+}
+#rec{
+	width: 70px;
+	height: 40px;
+	background: blue;
+	text-align: center;
+}
+img{
+	position: absolute;
+}
