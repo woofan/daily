@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		#c{
+			width: 500px;
+			height: 500px;
+			border: 1px;
+			border-style: solid;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="c"></canvas>
+</body>
+<script type="text/javascript">
+	var ca = document.getElementById("c");
+	wf = ca.getContext("2d");
+	wf.fillRect(10,10,100,100);
+</script> 
+</html>

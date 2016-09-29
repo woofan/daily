@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+body{
+	width:100%;
+	height: 100%;
+}
+input{
+	width: 120px;
+	height: 40px;
+	margin: 50px 0px 0px 20px;
+	border:1px;
+	border-style: solid;
+}
+#show{ 
+	display : flex;
+    height: auto;
+    width: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+    justify-content :center ;/*水平方向以容器中间对齐*/
+    align-items : flex-end; /*垂直方向以容器底部对齐*/
+    align-content : center;/*属性在当灵活容器内的各项没有占用交叉轴上所有可用的空间时对齐容器内的各项（垂直）*/
+}
+</style>
+<body>
+<input type="label" value="请输入随机数的上限:"/>
+<input id="a"/>
+<input type="button" id="b" value="确定"/><br/>
+<input type="label" value="随机数为:"/>
+<input type="label" id="c"/><br/>
+<div id="show"></div>
+</body>
+<script type="text/javascript">
+function main(){
+	var button_b = document.getElementById("b");
+	button_b.addEventListener("click",buttonClick,false);
+}
+function buttonClick(){
+	var text_a = document.getElementById("a");
+	var label_c = document.getElementById("c");
+	var input_number = Number(text_a.value);
+	if(!isNaN(input_number)&&input_number>0){
+		//console.log(text_a.value);
+		createColumn(input_number);
+		var number = getRandomNumber(input_number);
+		count(number);
+		label_c.value = number;
+	}
+	else
+		alert("非法数字!");
+}	
+function getRandomNumber(n){
+	var random_number = Math.random()*n;
+	var number = Math.floor(random_number)+1;
+	return number;
+}
+function count(n){
+	var increase = 10;
+	var column_div_id = "column_"+n;console.log(column_div_id);
+	var column_div = document.getElementById(column_div_id);
+	var height = parseInt(column_div.style.height) + increase;
+	var height_px = height+"px";
+	column_div.style.height = height_px;
+	var title = "数字" + n + "随机到" + height/increase +"次";
+	column_div.setAttribute("title",title);
+}
+function createColumn(n){
+	if(document.getElementById("column_1")){return}
+	var d = document.getElementById("show");
+	var color=["red","green","orange","yellow","blue"];
+	for(var i=1;i<n+1;i++){
+		console.log(i);
+	    var div = document.createElement("div");
+	    var div_text = document.createTextNode("数字"+i);
+	    div.setAttribute("id","column_"+i); 
+	    div.style.width = "10%";
+	    div.style.height = "0px";
+	    div.style.background = color[i%5];
+	    div.appendChild(div_text);
+	    d.appendChild(div);
+	}     
+}
+main();
+</script>
+</html>

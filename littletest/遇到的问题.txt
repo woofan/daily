@@ -1,0 +1,2 @@
+1.button移动中,position使用相对定位时出错了,移动距离永远比要求的少8px,绝对定位时无误差.
+2.element.value返回的是字符串,要先用Number方法转一下.
