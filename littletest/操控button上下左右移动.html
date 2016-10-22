@@ -5,69 +5,72 @@
 	<meta charset="utf-8">
 </head>
 <style type="text/css">
-body{width:98%;height: 500px;}
+body{margin: 0;padding: 0; width:100%;height: 500px;}
+#main{margin: 0;padding: 0;border:1px; border-style: solid;width: 200px;height: 300px;position: absolute;left: 40%;top: 40%;}
 button{border: 0px;}
 </style>
-<body id="main">
+<body>
+<div id="main"></div>
 </body>
 <script type="text/javascript">	
-var n=0;
-var totalWidth = document.body.clientWidth;//窗口最大宽度//console.log(totalWidth);
-var totalHeight = document.body.clientHeight;//窗口最大高度//console.log(totalHeight);
+var game_area = document.getElementById("main");
+var totalWidth = game_area.clientWidth;//窗口最大宽度//console.log(totalWidth);
+var totalHeight = game_area.clientHeight;//窗口最大高度//console.log(totalHeight);
 createButton(100,100,20);//获取主角滑块
 var elem = document.getElementById("my_button");
 createRandomButton(20);
 document.addEventListener("keydown",moveButton,false);//方向键摁下的触发时间
 function moveButton(event){
-
+	var n = 1;//每次移动的距离
 	switch(event.keyCode){
 		case 37://左
-			moveToLeft();
+			moveToLeft(n);
 			break;
 		case 38://上
-			moveToTop();
+			moveToTop(n);
 			break;
 		case 39://右
-			moveToRight();
+			moveToRight(n);
 			break;
 		case 40://下
-			moveToBottom();
+			moveToBottom(n);
 			break;
 		default:
-			n++;
+			break;
+			//n++;
 			//console.log("恩错键"+n+"次.");
-	}
+	}console.log("left"+elem.style.left);console.log("top"+elem.style.top);
 }
-function moveToLeft(){
+function moveToLeft(n){
 	var elem_left = parseInt(elem.style.left);//获取当前滑块的左边距
 	//console.log("每次移动前elem_left:"+elem_left);
 	//console.log("每次移动前elem.offsetLeft:"+elem.offsetLeft);
 	if(elem_left>0){
-		elem_left-=10;
+		elem_left-=n;
 		elem.style.left = elem_left+"px";
 		//console.log("每次移动后elem.style.left:"+elem.style.left);
 		//console.log("每次移动后elem.offsetLeft:"+elem.offsetLeft);
 	}
 	
 }
-function moveToRight(){
+function moveToRight(n){
 	var elem_left = parseInt(elem.style.left);
 	if(elem_left<totalWidth){
-		elem_left+=10;
+		elem_left+=n;
 		elem.style.left = elem_left+"px";
 		//console.log("离左边"+ (elem_left));
 	}
 }
-function moveToTop(){
+function moveToTop(n){
 	var elem_top = parseInt(elem.style.top);//获取当前滑块的上边距
 	if(elem_top>0){
-		elem.style.top = elem_top-10+"px";
+		elem.style.top = elem_top-n+"px";
 		//console.log("离顶边"+elem_top);
 	}
 }
-function moveToBottom(){
+function moveToBottom(n){
 	var elem_top = parseInt(elem.style.top);
-		elem.style.top = elem_top+10+"px";
+		elem.style.top = elem_top+n+"px";
 		//console.log("离顶边"+ (elem_top));
 }
 
@@ -86,6 +89,7 @@ function createRandomButton(l){//m为left值,n为top值,l为滑块边长
 		button.style.height = l + "px";
 		button.style.backgroundColor = "blue";
 		document.getElementById("main").appendChild(button);
+		console.log("左:"+button.style.left);console.log("高:"+button.style.top);
 	}
 }
 function createButton(m,n,l){
@@ -98,6 +102,7 @@ function createButton(m,n,l){
 		button.style.backgroundColor = "blue";
 		button.setAttribute("id","my_button");
 		document.getElementById("main").appendChild(button);
+		
 }
 </script>
 </html>
