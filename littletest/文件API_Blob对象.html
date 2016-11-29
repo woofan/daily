@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blob</title>
+	<meta charset="utf-8"/>
+</head>
+<script type="text/javascript">
+	function ShowFileType(){
+		var file;//file对象继承Blob对象，所以有下文的size和type属性
+		file = document.getElementById("file").files[0];
+		var size = document.getElementById("size");
+		size.innerHTML = file.size;
+		var type = document.getElementById("type");
+		type.innerHTML = file.type;
+	}
+	window.onload = function(){
+		var bt = document.getElementById("bt");
+		bt.addEventListener("click",ShowFileType,false);
+	};
+</script>
+<body>
+	<input type="file" id="file"/>
+	<input type="button" id="bt" value="显示文件信息" />
+	<br/>
+	文件字节长度：<span id="size"></span><br/>
+	文件类型：<span id="type"></span>
+</body>
+
+</html>
