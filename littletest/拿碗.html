@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+
+</style>
+<body>
+<label >本次值:</label><input id="a"/><br/>
+<label >总成功次数:</label><input id="c"/><br/>
+<label >平均值:</label><input id="b"/>
+</body>
+<script type="text/javascript">
+function init(){
+	wan = new Array();
+	all_time = 0;//总共轮次(每次10只碗都被抽到后算一次),全局变量
+	all_take = 0;//总共标记次数,全局变量
+	for(let i=0;i<10;i++){//初始化十只碗,数组的值是那一轮中被标记的次数
+		wan[i] = 0;	
+	}
+	take();
+}
+
+function take(){
+		let id = Math.floor(Math.random()*10);//随机拿到的碗的id
+		wan[id]++;//标记一下
+		for(let i=0;i<wan.length;i++){//看看有没有全标记
+			if(wan[i] ==0){setTimeout("take()",1);return;}//没全标记,继续
+		}
+
+		//全标记了
+		let total=0;//算下这一轮标记了几次
+		for(let j=0;j<wan.length;j++){
+			total +=wan[j];
+		}
+
+
+		document.getElementById("a").value = total;
+		all_time++;
+		all_take+=total;
+		document.getElementById("b").value = all_take/all_time;//算下平均值
+		document.getElementById("c").value = all_time;
+		
+		for(let k=0;k<wan.length;k++){//清零,继续
+		wan[k] = 0;
+		}
+
+	setTimeout("take()",1);//继续
+}
+
+init();
+</script>
+</html>
