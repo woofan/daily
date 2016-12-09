@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"/>
+	<script type="text/javascript">
+			var worker = new Worker("cal.js");
+			worker.onmessage = function(e){
+				alert(e.data);
+			};
+			function calculate(){
+				var num = parseInt(Math.round(document.getElementById("num").value));
+				worker.postMessage(num);
+			}
+			window.onload =function(){
+				var bt = document.getElementById("bt");
+				bt.addEventListener("click",calculate,false);
+			};
+	</script>
+</head>
+<body>
+输入数值：<input type="text" id="num">
+<button id="bt">计算</button>
+</body>	
+</html>

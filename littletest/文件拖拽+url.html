@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+<textarea></textarea>
+</body>
+<script type="text/javascript">
+ 	var ipt = document.querySelector('textarea');
+  	ipt.ondragover = function () { return false; };
+  	ipt.ondrop = function(e) {//拖拽文件事件
+	    e.stopPropagation();
+	    e.preventDefault();
+	    e = e || window.event;
+	    var files = e.dataTransfer.files;
+	    //console.log(files);
+	 	var blob = files[0];
+		var a = document.createElement("a");
+		a.href = window.URL.createObjectURL(blob);//生成指向files[0]的url
+		a.download = "a";
+		a.textContent = "Download";
+		document.body.appendChild(a);
+ };
+</script>
+</html>

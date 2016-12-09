@@ -12,6 +12,12 @@
 		size.innerHTML = file.size;
 		var type = document.getElementById("type");
 		type.innerHTML = file.type;
+		var a = document.createElement("a");
+		a.href = window.URL.createObjectURL(file);
+		a.download = "wf";
+		a.textContent = "Download";
+
+document.body.appendChild(a);
 	}
 	window.onload = function(){
 		var bt = document.getElementById("bt");
