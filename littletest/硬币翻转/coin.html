@@ -4,42 +4,50 @@
 	<title>test</title>
 	<meta charset="utf-8"/>
 	<style type="text/css">
-	div{
+	#father{
 		perspective: 1000px;
 	}
-	button{
-	width: 400px;
-	height: 400px;
-	background-image: url(coin1.jpg);
-	border-radius:50%;
-	border: none;
-	box-shadow: 0 1px 5px rgba(255,2555,255,0.5) inset,0 -2px 5px rgba(0,0,0,0.3) inset,0 3px 8px rgba(0,0,0,0.8);
+	.coin{
+		width: 400px;
+		height: 400px;
+		border-radius:50%;
+		border: none;
+		box-shadow: 0 1px 5px rgba(255,2555,255,0.5) inset,0 -2px 5px rgba(0,0,0,0.3) inset,0 3px 8px rgba(0,0,0,0.8);
 	}
-
+	#top{
+	background-image: url(coin1.jpg);
+	}
+/*	#bottom{
+	background-image: url(coin2.jpg);
+	background-position: -10px;
+	display: none;
+	}*/
 </style>
 
 </head>
 <body >
-<div><button id="main"></button></div>
+<div id="father">
+<div id="top" class="coin"></div>
+<!-- <div id="bottom" class="coin"></div> -->
+</div>
 
 </body>
-<script src="jquery-3.1.1.min.js"></script>
-<script src="angular.js"></script>
 <script type="text/javascript">
-
-main.addEventListener("click",fan1,false);
+var top1 = document.getElementById("top");//top不能做变量名
+top1.addEventListener("click",fan1,false);
+top1.addEventListener("webkitTransitionEnd",fan2,false);
 function fan1(){
-	var main = document.getElementById("main");
-	main.style.transition = "all 1s ease-in-out";
-	main.style.transform = "rotateY(80deg)";
+	top1.style.transition = "all 0.8s ease-in-out";
+	top1.style.transform = "rotateY(100deg)";
+	top1.removeEventListener("click",fan1,false);
 }
-main.addEventListener("webkitTransitionEnd",fan2,false);
 function fan2(){
-	var main = document.getElementById("main");
-	main.style.backgroundImage = "url(coin2.jpg)";
-	main.style.backgroundPosition = "-10px";
-	main.style.transition = "all 1s ease-in-out";
-	main.style.transform = "rotateY(180deg)";
-}
+ 	top1.style.backgroundImage = "url(coin2.jpg)";
+ 	top1.style.backgroundPosition = "-10px";
+	top1.style.transition = "all 0.6s ease-in-out";
+	top1.style.transform = "rotateY(180deg)";
+	//top.removeEventListener("webkitTransitionEnd",fan2,false);
+
+ }
 </script>
 </html>
