@@ -38,14 +38,14 @@ var top1 = document.getElementById("top");//top不能做变量名
 top1.addEventListener("click",fan1,false);
 top1.addEventListener("webkitTransitionEnd",fan2,false);
 function fan1(){
-	top1.style.transition = "all 0.8s ease-in";
-	top1.style.transform = "rotateY(100deg)";
+	top1.style.transition = "transform 0.8s ease-in";
+	top1.style.transform = "rotateY(110deg)";
 	top1.removeEventListener("click",fan1,false);
 }
 function fan2(){
  	top1.style.backgroundImage = "url(coin2.jpg)";
  	top1.style.backgroundPosition = "-10px";
-	top1.style.transition = "all 0.6s ease-out";
+	top1.style.transition = "transform 0.6s ease-out";
 	top1.style.transform = "rotateY(180deg)";
 	//top.removeEventListener("webkitTransitionEnd",fan2,false);
 
