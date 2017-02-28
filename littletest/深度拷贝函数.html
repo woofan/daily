@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+</style>
+
+</head>
+<body >
+</body>
+<script type="text/javascript">
+var x = [1,2,3];
+var y = deepClone(a);
+x[0] = 0;
+alert(x);alert(y);
+function deepClone(obj){
+	if((!obj)||typeof(obj)!=="object")
+		return obj;
+	var temp = new obj.constructor();//obj.constructor()方法返回obj的构造函数
+	for(var key in obj)
+		if(obj.hasOwnProperty(key))//obj.hasOWnProperty(key)判断key是不是obj上的一个属性或对象,且不考虑原型链上的.
+			temp[key] = deepClone(obj[key]);
+		return temp;
+}
+</script>
+</html>

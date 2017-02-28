@@ -13,6 +13,7 @@
 		border-radius:50%;
 		border: none;
 		box-shadow: 0 1px 5px rgba(255,2555,255,0.5) inset,0 -2px 5px rgba(0,0,0,0.3) inset,0 3px 8px rgba(0,0,0,0.8);
+		transition-timing-function:cubic-bezier(.9,0,1,1);
 	}
 	#top{
 	background-image: url(coin1.jpg);
@@ -37,14 +38,14 @@ var top1 = document.getElementById("top");//top不能做变量名
 top1.addEventListener("click",fan1,false);
 top1.addEventListener("webkitTransitionEnd",fan2,false);
 function fan1(){
-	top1.style.transition = "all 0.8s ease-in-out";
+	top1.style.transition = "all 0.8s ease-in";
 	top1.style.transform = "rotateY(100deg)";
 	top1.removeEventListener("click",fan1,false);
 }
 function fan2(){
  	top1.style.backgroundImage = "url(coin2.jpg)";
  	top1.style.backgroundPosition = "-10px";
-	top1.style.transition = "all 0.6s ease-in-out";
+	top1.style.transition = "all 0.6s ease-out";
 	top1.style.transform = "rotateY(180deg)";
 	//top.removeEventListener("webkitTransitionEnd",fan2,false);
 
