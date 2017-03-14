@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>学日语</title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+	.key{
+		float: left;
+		margin: 5px 5px;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		border-radius:5%;
+		border: none;
+		box-shadow: 0 1px 5px rgba(255,2555,255,0.5) inset,0 -2px 5px rgba(0,0,0,0.3) inset,0 3px 3px rgba(0,0,0,0.8);
+	}
+	#keyboard{
+		width: 120px;
+	}
+	#input{
+		float: left;
+		margin-right: 20px;
+		width: 60px;
+		height:20px;
+		border:1px solid black;
+	}
+	#jap{
+		float: left;
+		margin-right: 20px;
+		width: 20px;
+		height:20px;
+		border:1px solid black;
+	}
+</style>
+<body>
+<div id="main">
+	<div id="jap"></div>
+	<div id="input"></div>
+	<button id="confirm">确认</button>
+	<div id="keyboard"></div>
+</div>
+</body>
+<script type="text/javascript">
+keyBoard();
+
+
+
+function getElement(ele){
+	if(ele){
+		return document.getElementById(ele);
+	}
+	else
+		return -1;
+}
+function keyBoard(){
+	var list = ["a","i","u","e","o","k","s","t","n","h","m","y","r","w","n","u"];
+	for(var n in list){
+		if(list.hasOwnProperty(n)){
+			createDiv(keyboard,list[n]);
+		}
+	}
+}
+function createDiv(location,content){
+	var text = (typeof(content) ==="string")?content:(""+content);
+	if(typeof(location) === "object"){
+	var div = document.createElement("div");
+	var textnode = document.createTextNode(text);
+	div.setAttribute("class","key");
+	div.appendChild(textnode);
+	location.appendChild(div);
+	}
+	else
+		return -1;
+}
+</script>
+</html>

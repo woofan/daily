@@ -9,7 +9,7 @@ function getHTTPObject(){
 			try{return new ActiveXObject("Msxml2.XMLHTTP");}
 				catch(e){}
 			return false;
-		}
+		};
 		return new XMLHttpRequest();
 }
 function getNewContent(){
@@ -26,7 +26,7 @@ function getNewContent(){
 				para.appendChild(txt);
 				document.getElementById("wf").appendChild(para);
 			}
-		}
+		};
 		request.send(null);
 	}else{
 		alert("error!");
