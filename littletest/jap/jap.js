@@ -1,5 +1,6 @@
 var answer_times = 0,
     right_times = 0;
+getElement("input").textContent = "";
 keyBoard();
 addEvent("key");
 getElement("delete").addEventListener("click", deleteText, false);
@@ -61,7 +62,7 @@ function getElement(ele) {
 
 function keyBoard() {
     var keyboard = getElement("keyboard");
-    var list = ["a", "i", "u", "e", "o", "k", "s", "t", "n", "h", "m", "y", "r", "w", "n", "u"];
+    var list = ["a", "i", "u", "e", "o", "k", "s", "t", "n", "h", "m", "y", "r", "w", "n", "u", "c", "f"];
     for (var n in list) {
         if (list.hasOwnProperty(n)) {
             createDiv(keyboard, list[n]);
@@ -105,7 +106,9 @@ function deleteText() {
 function confirm() {
     answer_times++;
     var answer = getElement("input").textContent;
-    if (answer === "") alert("输入为空!");
+    if (answer === "") {
+        alert("输入为空!");
+    }
     var question = getElement("jap").textContent;
     for (var i in word) {
         if (i === question) {
@@ -120,7 +123,7 @@ function confirm() {
             }
         }
     }
-    getElement("right_percentage").textContent = (right_times/answer_times).toFixed(2);
+    getElement("right_percentage").textContent = (right_times / answer_times).toFixed(2);
 }
 
 function getWordLength(obj) {
@@ -143,12 +146,13 @@ function randomWord(length) {
 }
 
 function answerRight() {
-    getElement("main").style.backgroundColor = "green";
+    getElement("input").style.backgroundColor = "green";
 }
 
 function answerFalse() {
-    getElement("main").style.backgroundColor = "red";
+    getElement("input").style.backgroundColor = "red";
 }
-function free(dom){
-	getElement().textContent = "";
+
+function free(dom) {
+    getElement().textContent = "";
 }

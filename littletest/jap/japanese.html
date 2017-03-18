@@ -8,8 +8,10 @@
         </meta>
     </head>
     <style type="text/css">
-        .div{
-		font-size: 20px;
+	#show{
+		display:flex;
+		justify-content: left;
+		align-items:center;
 	}
 	.key{
 		float: left;
@@ -20,6 +22,7 @@
 		width: 40px;
 		height: 40px;
 		border-radius:5%;
+		font-size: 20px;
 		border: none;
 		box-shadow: 0 1px 5px rgba(255,2555,255,0.5) inset,0 -2px 5px rgba(0,0,0,0.3) inset,0 3px 3px rgba(0,0,0,0.8);
 	}
@@ -27,43 +30,46 @@
 		width: 240px;
 	}
 	#right_percentage{
+		display:flex;
+		justify-content: center;
+		align-items:center;
 		width: 60px;
 		height: 40px;
 		color:orange;
-		font-size: 20px;
+		font-size: 30px;
 		border:1px solid black;
 	}
 	#input{
-		margin-right: 20px;
 		width: 100px;
 		height:40px;
 		border:1px solid black;
+		font-size: 30px;
 	}
 	#jap{
 		float: left;
-		margin-right: 20px;
 		width: 40px;
 		height:40px;
 		border:1px solid black;
+		font-size: 40px;
 	}
-	.button{
-		width: 60px;
+	button{
+		width: 80px;
 		height: 40px;
-		text-align: center;
-		font-size: 30px;
+		font-size: 20px;
 	}
-	.button::hover{
+	button:hover{
 		background-color: orange;
 	}
     </style>
     <body>
         <div id="main">
+        <div id="show">
             <div id="jap">
             </div>
             <div id="input">
             </div>
             <div id="right_percentage">
-            </div>
+            </div></div>
             <button id="confirm">
                 确认
             </button>
