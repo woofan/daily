@@ -1,15 +1,18 @@
-getElement("input").textContent = "";
-getElement("time").textContent = "0秒";
-keyBoard();
-addEvent("key");
-getElement("delete").addEventListener("click", deleteText, false);
-getElement("confirm").addEventListener("click", confirm, false);
-getElement("change").addEventListener("click", randomWord, false);
-getElement("answer").addEventListener("click", showAnswer, false);
-let [word, list] = getWord();
-randomWord();
-let time = 0;
-setInterval(showTime, 1000);
+let [word, list] = getWord(), time = 0;
+init();
+
+function init() {
+    getElement("input").textContent = "";
+    getElement("time").textContent = "0秒";
+    keyBoard();
+    addEvent("key");
+    getElement("delete").addEventListener("click", deleteText, false);
+    getElement("confirm").addEventListener("click", confirm, false);
+    getElement("change").addEventListener("click", randomWord, false);
+    getElement("answer").addEventListener("click", showAnswer, false);
+    randomWord();
+    setInterval(showTime, 1000);
+}
 
 function getElement(ele) { //返回指定id的DOM对象
     if (ele) {
