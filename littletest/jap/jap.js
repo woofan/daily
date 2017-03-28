@@ -1,4 +1,4 @@
-let [word, list] = getWord(), time = 0;
+let [word, list] = getWord(), time = 0,visible = false;
 init();
 
 function init() {
@@ -10,6 +10,7 @@ function init() {
     getElement("confirm").addEventListener("click", confirm, false);
     getElement("change").addEventListener("click", randomWord, false);
     getElement("answer").addEventListener("click", showAnswer, false);
+    getElement("picture").addEventListener("click", showPicture, false);
     randomWord();
     setInterval(showTime, 1000);
 }
@@ -147,7 +148,15 @@ function rightPercentage() { //统计已正确回答的数量,计算正确率,�
     let right_percentage = (right_times / times).toFixed(2);
     getElement("right_percentage").textContent = "已答对: " + right_word + "! 正确率: " + right_percentage;
 }
-
+function showPicture(){
+    visible = !visible;
+    if(visible){
+        document.getElementsByTagName("body")[0].style.backgroundImage = 'url("jap.jpg")';
+    }
+    else{
+        document.getElementsByTagName("body")[0].style.backgroundImage = "";
+    }
+}
 function getWord() { //将之前对象方式存储的数据用map存储,用数组记录还未答对的日语字符,方便随机抽取.
     let list = [];
     let word = new Map();
