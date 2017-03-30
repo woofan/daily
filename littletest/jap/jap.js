@@ -1,7 +1,6 @@
 let [word, list] = getWord(), time = 0,visible = false;
-init();
 
-function init() {
+(function (){
     getElement("input").textContent = "";
     getElement("time").textContent = "0秒";
     keyBoard();
@@ -13,7 +12,7 @@ function init() {
     getElement("picture").addEventListener("click", showPicture, false);
     randomWord();
     setInterval(showTime, 1000);
-}
+})();
 
 function getElement(ele) { //返回指定id的DOM对象
     if (ele) {
