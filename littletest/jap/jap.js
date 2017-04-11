@@ -1,6 +1,8 @@
 let [word, list] = getWord(), time = 0, visible = false;
-$(document).ready(function() {
-    // $("#input").textContent = "";
+main();
+
+function main() {
+    let audio = $("#aduio");
     $("#time").text("0秒");
     keyBoard();
     addEvent("key");
@@ -11,7 +13,7 @@ $(document).ready(function() {
     $("#picture").on("click", showPicture);
     randomWord();
     setInterval(showTime, 1000);
-});
+}
 
 function showTime() {
     time++;
@@ -100,6 +102,7 @@ function answerRight(key) { //回答正确的情况.该字符对应的正确标�
     word.get(key).times += 1;
     $("#input").text("");
     $("#input").css("backgroundColor", "green");
+    startAudio(key);
     for (let i = 0; i < list.length; i++) {
         if (list[i] === key) list.splice(i, 1);
     }
@@ -144,62 +147,94 @@ function showPicture() {
     }
 }
 
+function startAudio(key) {
+    let time = word.get(key).start_time;
+    audio.currentTime = time;;
+    audio.play();
+    setTimeout(stopAudio, 600);
+
+}
+
+function stopAudio() {
+    audio.pause();
+}
+
+function getStartTime(array) {
+    let start_time = [];
+    let delete_time = [32.7, 33.9];
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < 5; j++) {
+            start_time[i * 5 + j] = parseFloat((array[i] + 0.6 * j).toFixed(2));
+        }
+    }
+    start_time.splice(36, 1);
+    start_time.splice(37, 1);
+    start_time.splice(44, 4);
+    start_time.push(43);
+    return start_time;
+}
+
 function getWord() { //将之前对象方式存储的数据用map存储,用数组记录还未答对的日语字符,方便随机抽取.
-    let list = [];
-    let word = new Map();
-    let old_word = {
-        "あ": "a",
-        "い": "i",
-        "う": "u",
-        "え": "e",
-        "お": "o",
-        "か": "ka",
-        "き": "ki",
-        "く": "ku",
-        "け": "ke",
-        "こ": "ko",
-        "さ": "sa",
-        "し": "shi",
-        "す": "su",
-        "せ": "se",
-        "そ": "so",
-        "た": "ta",
-        "ち": "chi",
-        "つ": "tsu",
-        "て": "te",
-        "と": "to",
-        "な": "na",
-        "に": "ni",
-        "ぬ": "nu",
-        "ね": "ne",
-        "の": "no",
-        "は": "ha",
-        "ひ": "hi",
-        "ふ": "fu",
-        "へ": "he",
-        "ほ": "ho",
-        "ま": "ma",
-        "み": "mi",
-        "む": "mu",
-        "め": "me",
-        "も": "mo",
-        "や": "ya",
-        "ゆ": "yu",
-        "よ": "yo",
-        "ら": "ra",
-        "り": "ri",
-        "る": "ru",
-        "れ": "re",
-        "ろ": "ro",
-        "わ": "wa",
-        "ん": "n"
-    };
+    let list = [],
+        index = 0,
+        start_time = [3, 7.2, 11.3, 15.42, 19.6, 23.8, 28, 32.1, 36, 40],
+        audio_time = getStartTime(start_time),
+        word = new Map(),
+        old_word = {
+            "あ": "a",
+            "い": "i",
+            "う": "u",
+            "え": "e",
+            "お": "o",
+            "か": "ka",
+            "き": "ki",
+            "く": "ku",
+            "け": "ke",
+            "こ": "ko",
+            "さ": "sa",
+            "し": "shi",
+            "す": "su",
+            "せ": "se",
+            "そ": "so",
+            "た": "ta",
+            "ち": "chi",
+            "つ": "tsu",
+            "て": "te",
+            "と": "to",
+            "な": "na",
+            "に": "ni",
+            "ぬ": "nu",
+            "ね": "ne",
+            "の": "no",
+            "は": "ha",
+            "ひ": "hi",
+            "ふ": "fu",
+            "へ": "he",
+            "ほ": "ho",
+            "ま": "ma",
+            "み": "mi",
+            "む": "mu",
+            "め": "me",
+            "も": "mo",
+            "や": "ya",
+            "ゆ": "yu",
+            "よ": "yo",
+            "ら": "ra",
+            "り": "ri",
+            "る": "ru",
+            "れ": "re",
+            "ろ": "ro",
+            "わ": "wa",
+            "ん": "n"
+        };
     for (let x in old_word) {
         let value = {
             "pronunciation": old_word[x],
             "right": false,
-            "times": 0
+            "times": 0,
+            "start_time": audio_time[index],
         };
+        index++;
         word.set(x, value);
         list.push(x);
     }
