@@ -92,8 +92,9 @@ function randomWord() { //换一个按钮点击事件=>随机换一个日语字�
         let question = list[n];
         $("#jap").text(question);
     } else {
-        alert("全部答完了!");
         $("#jap").text("");
+        alert("全部答完了!");
+
     }
 }
 
@@ -101,7 +102,7 @@ function answerRight(key) { //回答正确的情况.该字符对应的正确标�
     word.get(key).right = true;
     word.get(key).times += 1;
     $("#input").text("");
-    $("#input").css("backgroundColor", "green");
+    rightVisual();
     startAudio(key);
     for (let i = 0; i < list.length; i++) {
         if (list[i] === key) list.splice(i, 1);
@@ -112,7 +113,20 @@ function answerRight(key) { //回答正确的情况.该字符对应的正确标�
 function answerFalse(key) { //回答错误的情况.背景改红色
     word.get(key).times += 1;
     $("#input").text("");
-    $("#input").css("backgroundColor", "red"); //注意jquery与原生的区别!!
+    falseVisual();
+    //$("#input").css("backgroundColor", "red"); //注意jquery与原生的区别!!
+}
+function rightVisual() {
+    $("body").css("backgroundColor", "green");
+    setTimeout(() => {
+        $("body").css("backgroundColor", "white")
+    }, 1000);
+}
+function falseVisual() {
+    $("body").css("backgroundColor", "red");
+    setTimeout(() => {
+        $("body").css("backgroundColor", "white")
+    }, 1000);
 }
 
 function showAnswer() { //显示答案按钮点击事件=>在input里直接显示正确的答案
@@ -159,15 +173,14 @@ function stopAudio() {
     audio.pause();
 }
 
-function getStartTime(array) {
+function getStartTime(array) {//从音频文件中分割出每个音的起始时间
     let start_time = [];
-    let delete_time = [32.7, 33.9];
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < 5; j++) {
             start_time[i * 5 + j] = parseFloat((array[i] + 0.6 * j).toFixed(2));
         }
     }
-    start_time.splice(36, 1);
+    start_time.splice(36, 1);//几个重复的音不要
     start_time.splice(37, 1);
     start_time.splice(44, 4);
     start_time.push(43);
