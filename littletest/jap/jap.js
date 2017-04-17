@@ -1,4 +1,4 @@
-let [word, list] = getWord(), time = 0, visible = false;
+let [word, list] = getWord(), spend_times = 0, visible = false;//safari中time是已定义的全局变量
 main();
 
 function main() {
@@ -16,7 +16,8 @@ function main() {
 }
 
 function showTime() {
-    time++;
+    spend_times++;
+    let time = spend_times;
     let times = "";
     if (time < 60) {
         times = time + "秒";
