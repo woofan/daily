@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        canvas
+    </title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        #c {
+            border: 1px;
+            border-style: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c">
+        </canvas>
+</body>
+<script type="text/javascript">
+    function drawBeauty(beauty) {
+        var mycv = document.getElementById("c");
+        var info = getImageWidthAndHeight(beauty.src);
+        mycv.style.width = info.width + "px"; //canvas的页面显示大小，带px
+        mycv.width = info.width; //canvas的画布大小，只要数值
+        mycv.style.height = info.height + "px";
+        mycv.height = info.height;
+        var myctx = mycv.getContext("2d");
+        myctx.drawImage(beauty, 0, 0);
+    }
+
+    function load() {
+        var beauty = new Image();
+        beauty.src = "test1.jpg";
+        if (beauty.complete) {
+            drawBeauty(beauty);
+        } else {
+            beauty.onload = function() {
+                drawBeauty(beauty);
+            };
+            beauty.onerror = function() {
+                window.alert('图片加载失败，请重试');
+            };
+        }
+    }
+
+    function getImageWidthAndHeight(imageurl) {
+        var i = new Image();
+        i.src = imageurl;
+        var info = new Object();
+        info.width = i.width;
+        info.height = i.height;
+        console.log(info);
+        return info;
+    }
+
+    function main() {
+        if (document.all) {
+            window.attachEvent('onload', load);
+        } else {
+            window.addEventListener('load', load, false);
+        }
+    }
+    main();
+</script>
+
+</html>
